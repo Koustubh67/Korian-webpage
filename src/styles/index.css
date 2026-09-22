@@ -1,0 +1,91 @@
+:root {
+  --accent: #ff4d1c;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+}
+
+:root[data-theme="dark"] {
+  --bg: #0a0a0b;
+  --bg-elev: #121214;
+  --fg: #f4f4f2;
+  --muted: #86867f;
+  --line: rgba(244, 244, 242, 0.14);
+}
+
+:root[data-theme="light"] {
+  --bg: #f1f1ef;
+  --bg-elev: #e6e6e3;
+  --fg: #0a0a0b;
+  --muted: #6d6d66;
+  --line: rgba(10, 10, 11, 0.16);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* `html body` outranks the bare `body{background:#fff}` rule inside
+   Shery.css, which is injected after our styles by the dynamic import. */
+html body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-weight: 400;
+  overflow-x: hidden;
+  transition: background 0.5s var(--ease), color 0.5s var(--ease);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Shared primitives -------------------------------------------------- */
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.section {
+  position: relative;
+  padding: clamp(5rem, 12vw, 11rem) var(--gutter);
+  border-top: 1px solid var(--line);
+}
+
+.display {
+  font-size: clamp(2.2rem, 7.5vw, 6.5rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+.outline {
+  -webkit-text-stroke: 1.2px var(--fg);
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
